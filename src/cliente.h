@@ -13,6 +13,7 @@ typedef struct {
 	char nombre[50];
 	char apellido[51];
 	int cuil;
+	int cantidadPP;
 	int isEmpty;
 
 } eCliente;

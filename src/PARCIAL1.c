@@ -36,9 +36,14 @@ int main(void) {
 														"\n2-Baja Cliente "
 														"\n3-Modificar Cliente"
 														"\n4-Crear nuevo Prestamo"
-														"\n5-Saldar Prestamo\n"
-														"\n6-Salir\n",
-														"\nERROR, las opciones validas estan del 1 al 6\n",1,6,5 );
+														"\n5-Saldar Prestamo"
+														"\n6-Reanudar Prestamo"
+														"\n7-Imprimir Clientes"
+														"\n8-Imprimir Prestamos con Cuil"
+														"\n9-Imprimir Prestamos el que tiene mas PP"
+														"\n10-Imprimir prestamos mayores X \n"
+														"\n11-Salir\n",
+														"\nERROR, las opciones validas estan del 1 al 6\n",1,10,5 );
 
 					if(respuesta == 0 )
 					{
@@ -62,7 +67,22 @@ int main(void) {
 							case 5:
 								saldarPrestamo( prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
 								break;
-							case 6:
+							case 6 :
+								reanudarPrestamo( prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+								break;
+							case 7:
+								 imprimirClientes(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+								break;
+							case 8 :
+								imprimirPrestamosYcuil(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+								break;
+							case 9 :
+								imprimirClienteConMasPP(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+								break;
+							case 10 :
+								 prestamoMayorAmil(prestamos,QTY_PRESTAMOS);
+								break;
+							case 11:
 								printf("\n***Hasta luego***\n");
 								break;
 
@@ -71,6 +91,5 @@ int main(void) {
 						}while(opcion != 6);
 			return 0;
 			}
-
 
 

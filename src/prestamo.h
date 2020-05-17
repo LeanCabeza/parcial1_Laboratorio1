@@ -26,5 +26,9 @@ void mostrarPrestamo(ePrestamos prestamo);
 int mostrarPrestamoPorId(ePrestamos array[], int size,int idBuscado);
 int mostrarTodosLosPrestamos(ePrestamos array[], int size);
 int saldarPrestamo(ePrestamos array[],int tam,eCliente arrayClientes[],int tamClientes);
-
+int reanudarPrestamo(ePrestamos array[],int tam,eCliente arrayClientes[],int tamClientes);
+int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente);
+int imprimirPrestamosYcuil(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente);
+int prestamoMayorAmil(ePrestamos array[], int tam);
+int imprimirClienteConMasPP(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente);
 #endif /* PRESTAMO_H_ */
