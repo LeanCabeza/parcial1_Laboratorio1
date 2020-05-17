@@ -27,6 +27,7 @@ int mostrarClientePorId(eCliente array[], int size,int idBuscado);
 int mostrarTodosLosClientes(eCliente array[], int size);
 int bajaCliente(eCliente array[],int tam);
 int modificarCliente(eCliente array[],int tam);
+int buscarIdCliente(eCliente array[], int size, int valorBuscado, int* posicion);
 
 
 #endif /* CLIENTE_H_ */

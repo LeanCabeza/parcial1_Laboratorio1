@@ -25,6 +25,6 @@ int findPrestamoById(int id , ePrestamos array[],int tam);
 void mostrarPrestamo(ePrestamos prestamo);
 int mostrarPrestamoPorId(ePrestamos array[], int size,int idBuscado);
 int mostrarTodosLosPrestamos(ePrestamos array[], int size);
-int saldarPrestamo(ePrestamos arrayPrestamo[],eCliente arrayCliente[],int tamCliente, int tamPrestamo);
+int saldarPrestamo(ePrestamos array[],int tam,eCliente arrayClientes[],int tamClientes);
 
 #endif /* PRESTAMO_H_ */

@@ -97,11 +97,32 @@ int altaCliente(eCliente* array,int len,int* idCont)
 	return retorno;
 }
 
+int buscarIdCliente(eCliente array[], int size, int valorBuscado, int* posicion)
+{
+	// esta funcion a diferencia FIND CLIENTE BY ID , RETORNA SI SE PUDO ENCONTRAR ESE ID DE CLIENTE
+    int retorno=-1;
+    int i;
+    if(array!= NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(array[i].isEmpty==1)
+                continue;
+            else if(array[i].id==valorBuscado)
+            {
+                retorno=0;
+                *posicion=i;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+
 
 int findClienteById(int id , eCliente array[],int tam)
 {
-	// Busca un alumno por legajo , compara que no este vacio (OSEA QUE TENGA ALGO CARGADO PREVIAMENTE) y luego evalua si es igual
-	// al numero de legajo que le ingrese
+	// esta funcion a diferencia buscarIdCLiente , RETORNA LA POSICION DEL CLIENTE
 	int indice = -1;
 	for (int i = 0 ; i < tam ; i++)
 	{

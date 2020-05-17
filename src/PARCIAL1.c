@@ -25,8 +25,9 @@ int main(void) {
 	int respuesta ;
 	int opcion;
 	int legajo = 0  ;
-	int legajoPP = 50;
+	int legajoPP = 0;
 	inicializarCliente(cliente,QTY_CLIENTES);
+	inicializarPrestamo(prestamos,QTY_PRESTAMOS);
 
 		printf("\nBienvenido al operador de cliente , que tarea desea Realizar??\n");
 			do
@@ -59,7 +60,7 @@ int main(void) {
 							    altaPrestamo (prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES,&legajoPP);
 								break;
 							case 5:
-								saldarPrestamo(prestamos,cliente,QTY_CLIENTES,QTY_PRESTAMOS);
+								saldarPrestamo( prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
 								break;
 							case 6:
 								printf("\n***Hasta luego***\n");
