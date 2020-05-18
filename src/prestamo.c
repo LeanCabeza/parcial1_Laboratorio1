@@ -14,6 +14,19 @@
 #include "cliente.h"
 #include "prestamo.h"
 
+int subMenuPrestamos()
+{
+	int opcion ;
+	system("cls");
+		printf("1-Crear Prestamo \n\n");
+		printf("2-Saldar Prestamo \n\n");
+		printf("3-Reanudar Prestamo\n\n");
+		printf("4-Salir\n\n");
+		scanf("%d",&opcion);
+		return opcion;
+}
+
+
 int inicializarPrestamo(ePrestamos prestamo[], int tam)
 {
 	int retorno=-1;
@@ -323,168 +336,3 @@ int reanudarPrestamo(ePrestamos array[],int tam,eCliente arrayClientes[],int tam
 	return todoOk ;
 	}
 
-int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente)
-{
-	int retorno = -1;
-	int i;
-	int j;
-
-	if(arrayPrestamo != NULL && tamPrestamo>0 && arrayCliente != NULL && tamCliente>0)
-	{
-		for(i=0;i<tamPrestamo;i++)
-		{
-			if(arrayPrestamo[i].isEmpty == 1)
-			{
-				//printf("\n [DEBUG] valida que el esEmpty este en 1");
-				continue;
-			}
-			if(arrayPrestamo[i].estado == 1 ) // ESTADO 2 ES SALDADO , ESTADO 1 ES ACTIVO // ESTADO 0 ES INACTIVO
-			{
-			//printf("\n[DEBUG]valida que el estado este en 1\n");
-				for(j=0;j<tamCliente;j++)
-				{
-					if( arrayCliente[j].isEmpty == 1)
-						continue;
-					if(arrayPrestamo[i].idCliente == arrayCliente[j].id)
-					{
-						printf("\nID: %d"
-								"\nNombre: %s"
-								"\nApellido: %s"
-								"\nCuil: %d"
-								"\nID Prestamo: %d"
-								"\nEstado:%d"
-								"\n---------------",
-								arrayCliente[j].id,
-								arrayCliente[j].nombre,
-								arrayCliente[j].apellido,
-								arrayCliente[j].cuil,
-								arrayPrestamo[i].idPrestamo,
-								arrayPrestamo[i].estado);
-
-					}
-				}
-			}
-		}
-		retorno = 0;
-	}
-	return retorno;
-}
-
-
-int imprimirPrestamosYcuil(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente)
-{
-	int retorno = -1;
-	int i;
-	int j;
-
-	if(arrayPrestamo != NULL && tamPrestamo>0 && arrayCliente != NULL && tamCliente>0)
-	{
-		for(i=0;i<tamPrestamo;i++)
-		{
-			if(arrayPrestamo[i].isEmpty == 1)
-			{
-				//printf("\n [DEBUG] valida que el esEmpty este en 1");
-				continue;
-			}
-			if(arrayPrestamo[i].estado == 1 ) // ESTADO 2 ES SALDADO , ESTADO 1 ES ACTIVO // ESTADO 0 ES INACTIVO
-			{
-			//printf("\n[DEBUG]valida que el estado este en 1\n");
-				for(j=0;j<tamCliente;j++)
-				{
-					if( arrayCliente[j].isEmpty == 1)
-						continue;
-					if(arrayPrestamo[i].idCliente == arrayCliente[j].id)
-					{
-						printf("\nID PP: %d"
-								"\nID CLIENTE: %d"
-								"\nImporte del PP: %d"
-								"\nCantidad de Cuotas: %d"
-								"\nEstado : %d"
-								"\nCuil Cliente:%d"
-								"\n---------------",
-								arrayPrestamo[i].idPrestamo,
-								arrayPrestamo[i].idCliente,
-								arrayPrestamo[i].importe,
-								arrayPrestamo[i].cantidadDeCuotas,
-								arrayPrestamo[i].estado,
-								arrayCliente[j].cuil);
-
-					}
-				}
-			}
-		}
-		retorno = 0;
-	}
-	return retorno;
-}
-
-int prestamoMayorAmil(ePrestamos array[], int tam)
-{
-	int ret = -1;
-	int montoIngresado;
-	int i;
-
-	if(array != NULL && tam > 0)
-	{
-			if (utn_getNumero(&montoIngresado,"\nIngrese un monto mayor a 1000: ","\nError , monto ingresado no valido",1000,100000,5)==0)
-			{
-			for (i = 0; i < tam; i++) {
-				if (array[i].isEmpty == 1)
-					continue;
-				if (array[i].importe > montoIngresado && array[i].estado == 1)
-				{
-					printf("\n\nID PP: %d"
-							"\nImporte del PP: %d\n -----------------", array[i].idPrestamo,
-							array[i].importe);
-				}
-			}
-			ret = 0;
-		}
-	}
-	return ret;
-}
-
-
-
-int imprimirClienteConMasPP(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente)
-{
-	int retorno = -1;
-	int i;
-	int j;
-	int cantidadPP = 0 ;
-	int auxId;
-	int maximo=0;
-
-	if(arrayPrestamo != NULL && tamPrestamo>0 && arrayCliente != NULL && tamCliente>0)
-	{
-		for(i=0;i<tamPrestamo;i++)
-		{
-			if(arrayPrestamo[i].isEmpty == 1) // RECORRO ARRAY PRESTAMOS
-			{
-				continue;
-			}
-			if(arrayPrestamo[i].estado == 1 ) // ESTADO 2 ES SALDADO , ESTADO 1 ES ACTIVO , ESTADO 0 ES INACTIVO
-			{
-				for(j=0;j<tamCliente;j++) // RECORRO ARRAY CLIENTES
-				{
-					if( arrayCliente[j].isEmpty == 1)
-					{
-						continue;
-					}
-					if (arrayPrestamo[i].idCliente == arrayCliente[j].id) // CORROBRO SI COINCIDE EL ID CLIENTE CON ID PP
-					{
-					auxId = arrayCliente[j].id ;
-					cantidadPP++;
-					}
-					if(cantidadPP > maximo)
-					 {
-						 mostrarClientePorId( arrayCliente,tamCliente,auxId);
-						 maximo = cantidadPP ;
-						}
-				}
-			}
-		retorno = 0;
-	  }
-	}
-	return retorno;
-}

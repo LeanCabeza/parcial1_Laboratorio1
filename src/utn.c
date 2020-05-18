@@ -12,16 +12,7 @@
 #include <conio.h>
 #include "utn.h"
 
-int subMenuInformes()
-{
-	int opcion ;
-	system("cls");
-		printf("1-Ordenar empleados por Apellido \n\n");
-		printf("2-Promedio de salarios \n\n");
-		printf("3-Salir\n\n");
-		scanf("%d",&opcion);
-		return opcion;
-}
+
 
 int utn_getNumero(int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos)
 {

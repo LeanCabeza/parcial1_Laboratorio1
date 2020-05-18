@@ -53,7 +53,6 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
  * \return Retorna el numero ingresado
  *
  */
-int subMenuInformes();
 
 
 #endif /* UTN_H_ */

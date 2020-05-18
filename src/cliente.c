@@ -14,6 +14,20 @@
 #define NOMBRE_LEN 51
 
 
+int subMenuClientes()
+{
+	int opcion ;
+	system("cls");
+		printf("1-Alta Cliente \n\n");
+		printf("2-Baja Cliente \n\n");
+		printf("3-Modificar Cliente\n\n");
+		printf("4-Imprimir Clientes con su PP\n\n");
+		printf("5-Salir\n\n");
+		scanf("%d",&opcion);
+		return opcion;
+}
+
+
 int inicializarCliente(eCliente cliente[], int tam)
 {
 	int retorno=-1;
