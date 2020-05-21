@@ -81,7 +81,6 @@ int findPrestamoById(int id , ePrestamos array[],int tam)
 
 
 
-
 int nuevoPrestamo(ePrestamos list[], int len, int idPrestamo , int idCliente , int importe , int cantidadDeCuotas , int estado)
 {
 	int retorno = -1;

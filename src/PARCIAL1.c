@@ -111,7 +111,10 @@ int main(void) {
 										case 4:
 											prestamoMayorAmil(prestamos,QTY_PRESTAMOS);
 											break;
-										case 5:
+										case 5 :
+											imprimirClientes(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+											break;
+										case 6:
 											printf("\nConfirma Salida s/n ?");
 											fflush(stdin);
 											salirSub = getchar();
@@ -130,5 +133,6 @@ int main(void) {
 						}while(opcion != 4);
 			return 0;
 			}
+
 
 

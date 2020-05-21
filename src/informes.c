@@ -25,17 +25,37 @@ int subMenuInformes()
 		printf("2-Cliente con mas prestamos Saldados \n\n");
 		printf("3-Imprimir prestamos con cuil del cliente \n\n");
 		printf("4-Prestamos mayores a x NUM (x>1000)\n\n");
-		printf("5-Salir\n\n");
+		printf("5-Imprimir cliente con nro de PP activos\n\n");
+		printf("6-Salir\n\n");
 		scanf("%d",&opcion);
 		return opcion;
 }
 
+int cantidadPP(ePrestamos* array,int tam, int idCliente)
+{
+	int cantidad=0;
+	int i;
+	if(array!=NULL && tam >0 && idCliente>=0)
+	{
+		for(i=0; i<tam; i++)
+		{
+			if((array[i].isEmpty==0) && (array[i].idCliente==idCliente)&& (array[i].estado==1)) // estado 1 son los pp activos
+			{
+				cantidad++;
+			}
+
+		}
+	}
+return cantidad;
+}
 
 int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente)
 {
 	int retorno = -1;
 	int i;
 	int j;
+	int nro;
+	//int cantidad ;
 
 	if(arrayPrestamo != NULL && tamPrestamo>0 && arrayCliente != NULL && tamCliente>0)
 	{
@@ -43,32 +63,27 @@ int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayC
 		{
 			if(arrayPrestamo[i].isEmpty == 1)
 			{
-				//printf("\n [DEBUG] valida que el esEmpty este en 1");
 				continue;
 			}
-			if(arrayPrestamo[i].estado == 1 ) // ESTADO 2 ES SALDADO , ESTADO 1 ES ACTIVO // ESTADO 0 ES INACTIVO
+			if(arrayPrestamo[i].estado == 1 )
 			{
-			//printf("\n[DEBUG]valida que el estado este en 1\n");
 				for(j=0;j<tamCliente;j++)
 				{
 					if( arrayCliente[j].isEmpty == 1)
 						continue;
 					if(arrayPrestamo[i].idCliente == arrayCliente[j].id)
 					{
-
-						printf("\nID: %d"
-								"\nNombre: %s"
+						nro = arrayPrestamo[i].idCliente ;
+						//cantidad = (cantidadPP(arrayPrestamo,tamPrestamo,nro));
+						printf("\nNombre: %s"
 								"\nApellido: %s"
-								"\nCuil: %d"
-								"\nID Prestamo: %d"
-								"\nEstado:%d"
-								"\n---------------",
-								arrayCliente[j].id,
+								"\nCuil Cliente:%d",
 								arrayCliente[j].nombre,
 								arrayCliente[j].apellido,
-								arrayCliente[j].cuil,
-								arrayPrestamo[i].idPrestamo,
-								arrayPrestamo[i].estado);
+								arrayCliente[j].cuil);
+
+								printf("\nPP Activos : %d \n",cantidadPP(arrayPrestamo,tamPrestamo,nro));
+
 
 					}
 				}
@@ -83,8 +98,8 @@ int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayC
 int imprimirPrestamosYcuil(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente)
 {
 	int retorno = -1;
-	int i;
-	int j;
+	int i; // para recorrer prestamos
+	int j; // para recorrer clientes
 
 	if(arrayPrestamo != NULL && tamPrestamo>0 && arrayCliente != NULL && tamCliente>0)
 	{
@@ -97,26 +112,33 @@ int imprimirPrestamosYcuil(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente 
 			}
 			if(arrayPrestamo[i].estado == 1 ) // ESTADO 2 ES SALDADO , ESTADO 1 ES ACTIVO // ESTADO 0 ES INACTIVO
 			{
-			//printf("\n[DEBUG]valida que el estado este en 1\n");
+				//printf("\n[DEBUG]valida que el estado este en 1 que es activo \n");
+
 				for(j=0;j<tamCliente;j++)
 				{
 					if( arrayCliente[j].isEmpty == 1)
 						continue;
+
 					if(arrayPrestamo[i].idCliente == arrayCliente[j].id)
 					{
 						printf("\nID PP: %d"
 								"\nID CLIENTE: %d"
 								"\nImporte del PP: %d"
 								"\nCantidad de Cuotas: %d"
-								"\nEstado : %d"
 								"\nCuil Cliente:%d"
 								"\n---------------",
 								arrayPrestamo[i].idPrestamo,
 								arrayPrestamo[i].idCliente,
 								arrayPrestamo[i].importe,
 								arrayPrestamo[i].cantidadDeCuotas,
-								arrayPrestamo[i].estado,
 								arrayCliente[j].cuil);
+								if (arrayPrestamo[i].estado == 1)
+								{
+									printf("\nEstado : activo\n");
+									} else if (arrayPrestamo[i].estado == 2)
+									{
+									printf("\nEstado : saldado\n");
+									}
 
 					}
 				}
@@ -140,10 +162,11 @@ int prestamoMayorAmil(ePrestamos array[], int tam)
 			for (i = 0; i < tam; i++) {
 				if (array[i].isEmpty == 1)
 					continue;
-				if (array[i].importe > montoIngresado && array[i].estado == 1)
+				if ( (array[i].importe > montoIngresado) && (array[i].estado == 1))
 				{
 					printf("\n\nID PP: %d"
-							"\nImporte del PP: %d\n -----------------", array[i].idPrestamo,
+							"\nImporte del PP: %d\n -----------------",
+							array[i].idPrestamo,
 							array[i].importe);
 				}
 			}
@@ -154,23 +177,7 @@ int prestamoMayorAmil(ePrestamos array[], int tam)
 }
 
 
-int cantidadPP(ePrestamos* array,int tam, int idCliente)
-{
-	int cantidad=0;
-	int i;
-	if(array!=NULL && tam >0 && idCliente>=0)
-	{
-		for(i=0; i<tam; i++)
-		{
-			if((array[i].isEmpty==0) && (array[i].idCliente==idCliente)&& (array[i].estado==1))
-			{
-				cantidad++;
-			}
 
-		}
-	}
-return cantidad;
-}
 
 int cantidadPPSaldados(ePrestamos* array,int tam, int idCliente)
 {
@@ -180,7 +187,7 @@ int cantidadPPSaldados(ePrestamos* array,int tam, int idCliente)
 	{
 		for(i=0; i<tam; i++)
 		{
-			if((array[i].isEmpty==0) && (array[i].idCliente==idCliente)&& (array[i].estado==2))
+			if((array[i].isEmpty==0) && (array[i].idCliente==idCliente)&& (array[i].estado==2)) // estado dos son los pp saldados
 			{
 				cantidad++;
 			}
@@ -189,6 +196,7 @@ int cantidadPPSaldados(ePrestamos* array,int tam, int idCliente)
 	}
 return cantidad;
 }
+
 void clienteMasPrestamosActivos(ePrestamos arrayPrestamos[],int tamPrestamos,eCliente arrayClientes[], int tamClientes)
 
 {
@@ -199,7 +207,7 @@ void clienteMasPrestamosActivos(ePrestamos arrayPrestamos[],int tamPrestamos,eCl
 	int posCliente;
 	int flag=0;
 
-	if(arrayClientes!= NULL && tamClientes>0 && arrayPrestamos!=NULL && tamPrestamos>0)
+	if( (arrayClientes!= NULL) && (tamClientes>0) && (arrayPrestamos!=NULL) && (tamPrestamos>0))
 	{
 		for(i=0; i<tamClientes; i++)
 		{
@@ -207,6 +215,7 @@ void clienteMasPrestamosActivos(ePrestamos arrayPrestamos[],int tamPrestamos,eCl
 			{
 				nro =arrayClientes[i].id ;
 				cantidad=cantidadPP(arrayPrestamos,tamPrestamos,nro);
+
 				if(flag==0 || cantidad>maxPrestamos)
 				{
 					maxPrestamos=cantidad;
@@ -244,7 +253,7 @@ void clienteMasPrestamosSaldados(ePrestamos arrayPrestamos[],int tamPrestamos,eC
 			if(arrayClientes[i].isEmpty==0)
 			{
 				nro =arrayClientes[i].id ;
-				cantidad=cantidadPPSaldados(arrayPrestamos,tamPrestamos,nro);
+				cantidad=cantidadPPSaldados(arrayPrestamos,tamPrestamos,nro); // esto es lo unico que cambia con respecto a la anterior
 				if(flag==0 || cantidad>maxPrestamos)
 				{
 					maxPrestamos=cantidad;
@@ -254,6 +263,7 @@ void clienteMasPrestamosSaldados(ePrestamos arrayPrestamos[],int tamPrestamos,eC
 			}
 		}
 	}
+
 	if(maxPrestamos>0)
 	{
 		printf("El que tiene mas PP saldados es :");
