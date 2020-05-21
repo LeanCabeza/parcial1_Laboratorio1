@@ -16,8 +16,8 @@
 #include "cliente.h"
 #include "prestamo.h"
 #include "informes.h"
-#define QTY_CLIENTES 50
-#define QTY_PRESTAMOS 50
+#define QTY_CLIENTES 5
+#define QTY_PRESTAMOS 5
 
 int main(void) {
 	setbuf(stdout,NULL);
@@ -114,7 +114,16 @@ int main(void) {
 										case 5 :
 											imprimirClientes(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
 											break;
-										case 6:
+										case 6 :
+											clienteMasPrestamos(prestamos,QTY_PRESTAMOS,cliente,QTY_CLIENTES);
+											break;
+										case 7:
+											prestamos12CtasSaldados(prestamos,QTY_PRESTAMOS);
+											break;
+										case 8:
+											comparacionCtas(prestamos,QTY_PRESTAMOS);
+											break;
+										case 9:
 											printf("\nConfirma Salida s/n ?");
 											fflush(stdin);
 											salirSub = getchar();

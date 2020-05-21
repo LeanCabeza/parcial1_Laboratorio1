@@ -75,5 +75,9 @@ void clienteMasPrestamosSaldados(ePrestamos arrayPrestamos[],int tamPrestamos,eC
  *
  */
 int imprimirClientes(ePrestamos arrayPrestamo[], int tamPrestamo,eCliente arrayCliente[],int tamCliente);
+void cantidadPPGRAL(ePrestamos* array,int tam, int idCliente);
+void clienteMasPrestamos(ePrestamos arrayPrestamos[],int tamPrestamos,eCliente arrayClientes[], int tamClientes);
+int prestamos12CtasSaldados(ePrestamos array[], int tam);
+int comparacionCtas(ePrestamos array[], int tam);
 
 #endif /* INFORMES_H_ */
