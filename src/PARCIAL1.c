@@ -18,7 +18,7 @@
 #include "informes.h"
 #define QTY_CLIENTES 5
 #define QTY_PRESTAMOS 5
-
+//
 int main(void) {
 	setbuf(stdout,NULL);
 	eCliente cliente[QTY_CLIENTES];
